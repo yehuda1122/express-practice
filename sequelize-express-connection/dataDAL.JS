@@ -9,7 +9,8 @@ const initialData = [
 const names = ['Charlie', 'Dana', 'Eva', 'Frank'];
 const activities = ['Comment', 'Like', 'Share', 'Logout'];
 
-async function startInsertData(){
+
+export async function startInsertData(){
 try{
 await sequelize.sync({ force: true });
 console.log("Table created.");
@@ -20,9 +21,9 @@ catch(err){
     console.error("Error inserting data:", err)
 }
 }
-// startInsertData()
 
-function  insertRandom(){
+
+export function  insertRandom(){
     setInterval(async()=>{
         let rand = Math.floor(Math.random()*names.length)
         let nameof = names[rand]
@@ -38,9 +39,7 @@ function  insertRandom(){
 
     },1000*10)
 }
-// insertRandom()
-
-async function allData(){
+export async function allData(){
     try{
     const rows = await UserActivity.findAll({raw: true})
         console.table(rows);
@@ -49,4 +48,3 @@ async function allData(){
         console.log({err: "cennot log data"});
     }
 }
-// allData()
